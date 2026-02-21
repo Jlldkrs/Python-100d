@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feyenoord FC</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <img src="https://crests.football-data.org/674.png" alt="Feyenoord" class="crest" />
+      <div>
+        <h1 class="club-name">Feyenoord</h1>
+        <p class="club-sub">Rotterdam · Eredivisie</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-bar">
+    <button class="tab active" data-tab="results">Results</button>
+    <button class="tab" data-tab="upcoming">Upcoming</button>
+  </nav>
+
+  <main class="content">
+    <!-- API Key Banner -->
+    <div id="api-key-banner" class="banner hidden">
+      <p>Enter a <a href="https://www.football-data.org/client/register" target="_blank">football-data.org</a> API key for live data:</p>
+      <div class="key-row">
+        <input id="api-key-input" type="text" placeholder="Your API key…" />
+        <button id="api-key-save">Save</button>
+      </div>
+    </div>
+
+    <!-- Results tab -->
+    <section id="tab-results" class="tab-panel active">
+      <h2 class="section-title">Recent Results</h2>
+      <div id="results-list" class="match-list">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </section>
+
+    <!-- Upcoming tab -->
+    <section id="tab-upcoming" class="tab-panel hidden">
+      <h2 class="section-title">Upcoming Fixtures &amp; Predictions</h2>
+      <div id="upcoming-list" class="match-list">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </section>
+
+    <!-- Error state -->
+    <div id="error-msg" class="error-msg hidden">
+      <span class="error-icon">⚠</span>
+      <p id="error-text">Could not load match data.</p>
+      <button id="retry-btn">Retry</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

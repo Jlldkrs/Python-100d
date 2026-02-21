@@ -1,0 +1,331 @@
+/* ── Reset & base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:    #C8102E;
+  --red-dk: #9e0d24;
+  --white:  #ffffff;
+  --grey-0: #f4f4f4;
+  --grey-1: #e0e0e0;
+  --grey-2: #aaaaaa;
+  --grey-3: #555555;
+  --black:  #111111;
+  --win:    #1a8a3c;
+  --draw:   #d67c00;
+  --loss:   #C8102E;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,.09);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--grey-0);
+  color: var(--black);
+  min-height: 100dvh;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+.header {
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dk) 100%);
+  color: var(--white);
+  padding: 20px 16px 24px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.crest {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.3));
+}
+
+.club-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.club-sub {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ── Tab bar ──────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  background: var(--white);
+  border-bottom: 2px solid var(--grey-1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  padding: 14px 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--grey-3);
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+/* ── Content area ─────────────────────────────────────── */
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px 12px 32px;
+}
+
+.section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--grey-2);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* ── Tab panels ───────────────────────────────────────── */
+.tab-panel { display: block; }
+.tab-panel.hidden { display: none; }
+
+/* ── Match card ───────────────────────────────────────── */
+.match-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px 6px;
+  border-bottom: 1px solid var(--grey-0);
+}
+
+.comp-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--grey-3);
+}
+
+.match-date {
+  font-size: 0.72rem;
+  color: var(--grey-2);
+}
+
+/* Scoreline row */
+.card-body {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 12px 14px;
+  gap: 8px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.team-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.team-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--black);
+}
+
+.team.away .team-name { color: var(--grey-3); }
+
+.score-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.score {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--black);
+  line-height: 1;
+}
+
+.result-pill {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 99px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.result-pill.W { background: var(--win); }
+.result-pill.D { background: var(--draw); }
+.result-pill.L { background: var(--loss); }
+
+/* ── Upcoming / prediction card ───────────────────────── */
+.prediction-bar {
+  display: flex;
+  border-top: 1px solid var(--grey-0);
+}
+
+.pred-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 9px 4px 8px;
+  font-size: 0.7rem;
+  color: var(--grey-3);
+  font-weight: 600;
+  flex: 1;
+  gap: 3px;
+}
+
+.pred-segment:not(:last-child) {
+  border-right: 1px solid var(--grey-0);
+}
+
+.pred-pct {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--black);
+}
+
+.pred-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.4px; }
+
+/* Feyenoord highlight strip */
+.fey-home .card-header { background: rgba(200,16,46,.06); }
+
+/* ── Skeleton loaders ─────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.skeleton-card {
+  height: 110px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, #e8e8e8 25%, #f4f4f4 50%, #e8e8e8 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+  margin-bottom: 10px;
+}
+
+/* ── Error state ──────────────────────────────────────── */
+.error-msg {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--grey-3);
+}
+
+.error-msg.hidden { display: none; }
+
+.error-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+#retry-btn {
+  margin-top: 14px;
+  padding: 10px 24px;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.9rem;
+}
+
+/* ── API key banner ───────────────────────────────────── */
+.banner {
+  background: #fff8e1;
+  border: 1px solid #f0c040;
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  font-size: 0.82rem;
+  color: #5a4800;
+}
+
+.banner.hidden { display: none; }
+
+.banner a { color: var(--red); font-weight: 700; }
+
+.key-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.key-row input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--grey-1);
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.82rem;
+}
+
+.key-row button {
+  padding: 8px 16px;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.82rem;
+}
+
+/* ── Utility ──────────────────────────────────────────── */
+.match-list { margin-top: 4px; }
+
+/* ── Desktop tweak ────────────────────────────────────── */
+@media (min-width: 640px) {
+  .content { padding: 24px 0 48px; }
+  .club-name { font-size: 2rem; }
+  .crest { width: 64px; height: 64px; }
+  .score { font-size: 1.9rem; }
+  .team-logo { width: 44px; height: 44px; }
+}
